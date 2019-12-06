@@ -2,6 +2,8 @@
 
 Virtual Reality experience based on WebVR, works best with a VR headset like Oculus Quest.
 
+<img src="https://thumbs.gfycat.com/DapperWarmIbis-size_restricted.gif">
+
 ### Preparing ROMS (games)
 
 *This repo does not include any ROMS (games). To use the emulator, you must prepare a few games in advance.*
