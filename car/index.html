@@ -1,0 +1,74 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Gameboy VR Experience</title>
+  <script src="../amebo.js"></script>
+  <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
+  <script src="../canvas-updater.js"></script>
+  <script src="../gbc-canvas.js"></script>
+  <script src="../controls.js"></script>
+  <script src="../control-target.js"></script>
+  <script src="../game.js"></script>
+  <script src="../games.js"></script>
+</head>
+<body>
+  
+  <div id="noroms" style="display:none; position:relative; z-index:1; background:white; width:100%; height:100%; padding:10px; font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif;">
+    <h2>Error: No ROMS provided</h2>
+    <p><i>This emulator requires ROMS (Gameboy games) to be provided as a URL parameter named "roms".</i></p>
+    <p>1. Create a JSON file with the format:
+      <code><pre>
+      [
+        {
+          "img": "https://example.com/game1-cover.jpg",
+          "rom": "https://example.com/game1-rom.gbc"
+        },
+        {
+          "img": "https://example.com/game2-cover.jpg",
+          "rom": "https://example.com/game2-rom.gbc"
+        }
+      ]
+      </pre></code>
+    </p>
+    <p>2. Upload the JSON file somewhere (like <a href="https://glitch.com/create" target="_blank">glitch.me</a>)</p>
+    <p>3. Provide the file link as a URL parameter named "roms":
+      <code><pre>
+      https://gameboy.webvr.link?roms=https://example.glitch.me/roms.json
+      </pre>
+      </code>
+    </p>
+  </div>
+  
+  <a-scene>
+
+    <a-entity light="type: ambient; color: #BBB"></a-entity>
+    <a-entity light="type: directional; color: #FFF; intensity: 0.6" position="-0.5 1 1"></a-entity>
+    
+    <a-assets>
+      <canvas id="screen" width="512" height="512"></canvas>    
+      <a-asset-item id="gameboy" src="../assets/gameboy-blue.gltf"></a-asset-item>
+      <a-asset-item id="game" src="../assets/game-light.gltf"></a-asset-item>
+      <a-asset-item id="car" src="assets/scene.gltf"></a-asset-item>
+      <a-asset-item id="mom-obj" src="assets/091_W_Aya_10K.obj"></a-asset-item>
+      <a-asset-item id="mom-mtl" src="assets/091_W_Aya_10K.mtl"></a-asset-item>
+    </a-assets>
+    
+    <a-entity id="gbparent" control-target position="0 1.3 -0.5" scale="0.2 0.2 0.2" rotation="-15 0 0">
+      <a-plane position="0 1.22 0" rotation="0 0 0" width="1.14" height="1.08" material="shader:flat; src:#screen;" gbc-canvas="" canvas-updater></a-plane>
+      <a-entity id="gb" position="0 0 -0.415" gltf-model="#gameboy" shadow="cast: true; receive: false;"></a-entity>
+    </a-entity>
+
+    <a-entity position="-1 -1 -1.5" rotation="0 -180 0" scale="0.3 0.3 0.3" gltf-model="#car"></a-entity>
+
+    <a-entity position="-2 -0.2 -1.7" rotation="0 -180 0" scale="0.0022 0.0022 0.0022" obj-model="obj: #mom-obj; mtl: #mom-mtl"></a-entity>
+    
+    <a-entity games=""></a-entity>
+    
+    <a-entity controls></a-entity>
+    
+    <a-entity light="type: spot; target: #gb; distance: 5;" position="0 1.3 0"></a-entity>
+    
+  </a-scene>  
+  
+</body>
+</html>
