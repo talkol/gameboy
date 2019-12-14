@@ -33,6 +33,19 @@ Virtual Reality experience based on WebVR, works best with a VR headset like Ocu
 2. Click on the glasses icon on the bottom right to enter VR mode
 3. Enjoy
 
+### New - play in the backseat of a car at night
+
+<img src="https://thumbs.gfycat.com/ImaginaryYoungIslandcanary-small.gif">
+
+Made after the following comment on Reddit:
+> All you have to do now is add an option to change the environment into the back seat of a minivan at night, while your parents drive you and your sibling home and you only have the brief lighting of streetlights to play by.
+
+1. Prepare JSON like before
+2. Notice the changed URL (/car) and the game index to autoplay as a URL parameter named "i":
+  ```
+  https://gameboy.webvr.link/car?roms=https://example.glitch.me/roms.json&i=3
+  ```
+  
 ### Credits
 
 Based on Amebo GBC emulator https://github.com/riperiperi/amebo
